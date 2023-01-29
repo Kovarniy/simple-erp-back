@@ -1,13 +1,17 @@
 const express = require('express');
-const PORT = 3500;
+const cors = require('cors');
+const departmentsRoutes = require('./settings/departmentsRouter');
+const employeesRouter = require('./settings/employeesRouter');
 
 const app = express();
+const PORT = 3500;
+
 app.use(express.json());
 
-const departmentsRoutes = require('./settings/departmentsRouter');
 departmentsRoutes(app);
-const employeesRouter = require('./settings/employeesRouter');
 employeesRouter(app);
+
+app.use(cors());
 
 app.listen(PORT, () => console.log("work"));
 
